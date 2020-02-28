@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)http://www.jquerycookbook.com/demos/S4-DropDownULLists/43-MoveMultiSelectListItems.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+	.active{
+	background: lightblue;
+	}
+    div.ex1 {
+
+  width: 110px;
+  height: 110px;
+  overflow: scroll;
+}
+ul{
+		list-style-type:none;
+        padding:0px;
+}
+	</style>
+	
+<body>
+  
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#myid li").click(function () {             
+               
+				$(this).toggleClass("active");
+            });
+			$("#Selected li").click(function () {             
+               
+				$(this).toggleClass("active");
+            });
+			$("#Push").click(function(){
+				
+				$('#myid li.active').appendTo('#Selected');
+				$("#Selected li").removeClass("active");
+			});	
+			$("#Pop").click(function(){				
+				$('#Selected li.active').appendTo('#myid');
+				  $("#myid li").removeClass("active");
+			});
+			$("#GetSel").click(function(){
+			var DBGroup = [];
+				 $('#Selected li').each(function () { debugger
+					DBGroup.push({
+						"Id": parseInt(this.id),
+						"Name": $(this).text()
+					})
+				});
+				
+				alert(JSON.stringify(DBGroup));
+			});
+			
+        });
+</script>
+
+
+<div class="ex1">
+<ul id='myid'>
+        <li id="1">First</li>
+        <li id="2">Second</li>
+        <li id="3">Third</li>
+        <li id="4">Fourth</li>
+        <li id="5">Fifth</li>
+</ul>
+</div>
+<div class="ex1">
+
+<ul id='Selected'>
+       
+</ul>
+
+</div>
+
+<input type="button" id="Pop" name="Pop" value="Pop" />
+<input type="button" id="Push" name="Push" value="Push" />
+<input type="button" id="GetSel" name="GetSel" value="GetSel" />
+</body>
+
+
+</html>
